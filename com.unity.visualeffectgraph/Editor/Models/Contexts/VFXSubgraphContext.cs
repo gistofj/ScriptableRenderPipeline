@@ -382,14 +382,17 @@ namespace UnityEditor.VFX
             if( m_Subgraph != null && m_SubChildren == null)
                 RecreateCopy();
 
-            foreach (var child in m_SubChildren)
+            if (m_SubChildren != null)
             {
-                if( ! (child is VFXParameter) )
+                foreach (var child in m_SubChildren)
                 {
-                    objs.Add(child);
+                    if (!(child is VFXParameter))
+                    {
+                        objs.Add(child);
 
-                    if (child is VFXModel)
-                        (child as VFXModel).CollectDependencies(objs, false);
+                        if (child is VFXModel)
+                            (child as VFXModel).CollectDependencies(objs, false);
+                    }
                 }
             }
         }
