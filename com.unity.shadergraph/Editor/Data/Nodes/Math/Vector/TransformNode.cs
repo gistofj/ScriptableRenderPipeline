@@ -101,7 +101,7 @@ namespace UnityEditor.ShaderGraph
             NodeUtils.SlotConfigurationExceptionIfBadConfiguration(this, new[] { InputSlotId }, new[] { OutputSlotId });
             string inputValue = string.Format("{0}.xyz", GetSlotValue(InputSlotId, generationMode));
             string targetTransformString = "tangentTransform_" + conversion.from.ToString();
-            string transposeTargetTransformString = "transposeTangent";
+            string transposeTargetTransformString = GetVariableNameForNode() + "_transposeTangent";
             string transformString = "";
             string tangentTransformSpace = conversion.from.ToString();
             bool requiresTangentTransform = false;
