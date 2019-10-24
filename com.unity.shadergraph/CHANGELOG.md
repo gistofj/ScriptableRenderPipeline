@@ -18,6 +18,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed a shader compatibility issue in the SRP Batcher when you use a hybrid instancing custom variable.
 - Fixed an issue where Unity would crash when you imported a Shader Graph Asset with invalid formatting.
 - Fixed an issue with the animated preview when there is no Camera with animated Materials in the Editor.
+- `Enable GPU Instancing` no longer produces errors when enabled on a Shader Graph material.
+- Multiple tangent transform nodes on a graph no longer produces errors.
+- The Main Preview for Sprite Unlit Sprite Lit master nodes now display the correct color.
+- Shader Graph shaders in `Always Included Shaders` no longer crash builds.
+- The `Transform` node now correctly transforms Absolute World to Object. 
 
 ## [7.1.1] - 2019-09-05
 ### Added
