@@ -18,11 +18,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed a shader compatibility issue in the SRP Batcher when you use a hybrid instancing custom variable.
 - Fixed an issue where Unity would crash when you imported a Shader Graph Asset with invalid formatting.
 - Fixed an issue with the animated preview when there is no Camera with animated Materials in the Editor.
-- `Enable GPU Instancing` no longer produces errors when enabled on a Shader Graph material.
-- Multiple tangent transform nodes on a graph no longer produces errors.
-- The Main Preview for Sprite Unlit Sprite Lit master nodes now display the correct color.
-- Shader Graph shaders in `Always Included Shaders` no longer crash builds.
-- The `Transform` node now correctly transforms Absolute World to Object. 
+- `Enable GPU Instancing` no longer produces errors when enabled on a Shader Graph material. [1184870](https://issuetracker.unity3d.com/issues/universalrp-shader-compilation-error-when-using-gpu-instancing)
+- Multiple tangent transform nodes on a graph no longer produces errors. [1185752](https://issuetracker.unity3d.com/issues/shadergraph-fails-to-compile-with-redefinition-of-transposetangent-when-multiple-tangent-transform-nodes-are-plugged-in)
+- The Main Preview for Sprite Unlit Sprite Lit master nodes now display the correct color. [1184656](https://issuetracker.unity3d.com/issues/shadergraph-preview-for-lit-and-unlit-master-node-wrong-color-when-color-is-set-directly-on-master-node)
+- Shader Graph shaders in `Always Included Shaders` no longer crash builds. [1191757](https://issuetracker.unity3d.com/issues/lwrp-build-crashes-when-built-with-shadergraph-file-added-to-always-include-shaders-list)
+- The `Transform` node now correctly transforms Absolute World to Object.
 
 ## [7.1.1] - 2019-09-05
 ### Added
