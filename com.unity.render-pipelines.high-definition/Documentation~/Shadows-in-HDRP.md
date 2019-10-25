@@ -38,7 +38,6 @@ Shadow maps are essentially textures projected from the point of view of the Lig
 In HDRP, each individual Light component controls its own shadow biasing using the following parameters:
 
 - **Near Plane**
-- **ShadowMask Mode**
 - **Slope-Scale Depth Bias**
 - **Normal Bias**
 
