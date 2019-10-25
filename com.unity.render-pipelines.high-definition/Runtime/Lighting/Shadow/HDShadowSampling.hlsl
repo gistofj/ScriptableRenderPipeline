@@ -1,21 +1,21 @@
 // Various shadow sampling logic.
 // Again two versions, one for dynamic resource indexing, one for static resource access.
 
-
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Shadow/ShadowSamplingTent.hlsl"
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
+
+#define FIXED_UNIFORM_BIAS (1.0f / 65536.0f)
 
 // ------------------------------------------------------------------
 //  PCF Filtering methods
 // ------------------------------------------------------------------
 
-real SampleShadow_PCF_Tent_3x3(float4 shadowAtlasSize, float3 coord, Texture2D tex, SamplerComparisonState compSamp, float depthBias)
+real SampleShadow_PCF_Tent_3x3(float4 shadowAtlasSize, float3 coord, Texture2D tex, SamplerComparisonState compSamp)
 {
 #if SHADOW_USE_DEPTH_BIAS == 1
     // add the depth bias
-    coord.z += depthBias;
+    coord.z += FIXED_UNIFORM_BIAS;
 #endif
-
     real shadow = 0.0;
     real fetchesWeights[4];
     real2 fetchesUV[4];
@@ -33,13 +33,12 @@ real SampleShadow_PCF_Tent_3x3(float4 shadowAtlasSize, float3 coord, Texture2D t
 //
 
 // shadowAtlasSize.xy is the shadow atlas size in pixel and shadowAtlasSize.zw is rcp(shadow atlas size)
-real SampleShadow_PCF_Tent_5x5(float4 shadowAtlasSize, float3 coord, Texture2D tex, SamplerComparisonState compSamp, float depthBias)
+real SampleShadow_PCF_Tent_5x5(float4 shadowAtlasSize, float3 coord, Texture2D tex, SamplerComparisonState compSamp)
 {
 #if SHADOW_USE_DEPTH_BIAS == 1
     // add the depth bias
-    coord.z += depthBias;
+    coord.z += FIXED_UNIFORM_BIAS;
 #endif
-
     real shadow = 0.0;
     real fetchesWeights[9];
     real2 fetchesUV[9];
@@ -81,13 +80,12 @@ real SampleShadow_PCF_Tent_5x5(float4 shadowAtlasSize, float3 coord, Texture2D t
 //
 //                  7x7 tent PCF sampling (16 taps)
 //
-real SampleShadow_PCF_Tent_7x7(float4 shadowAtlasSize, float3 coord, Texture2D tex, SamplerComparisonState compSamp, float depthBias)
+real SampleShadow_PCF_Tent_7x7(float4 shadowAtlasSize, float3 coord, Texture2D tex, SamplerComparisonState compSamp)
 {
 #if SHADOW_USE_DEPTH_BIAS == 1
     // add the depth bias
-    coord.z += depthBias;
+    coord.z += FIXED_UNIFORM_BIAS;
 #endif
-
     real shadow = 0.0;
     real fetchesWeights[16];
     real2 fetchesUV[16];
@@ -142,14 +140,14 @@ real SampleShadow_PCF_Tent_7x7(float4 shadowAtlasSize, float3 coord, Texture2D t
 //
 //                  9 tap adaptive PCF sampling
 //
-float SampleShadow_PCF_9tap_Adaptive(float4 texelSizeRcp, float3 tcs, float filterSize, Texture2D tex, SamplerComparisonState compSamp, float depthBias)
+float SampleShadow_PCF_9tap_Adaptive(float4 texelSizeRcp, float3 tcs, float filterSize, Texture2D tex, SamplerComparisonState compSamp)
 {
-    texelSizeRcp *= filterSize;
-
 #if SHADOW_USE_DEPTH_BIAS == 1
     // add the depth bias
-    tcs.z += depthBias;
+    tcs.z += FIXED_UNIFORM_BIAS;
 #endif
+
+    texelSizeRcp *= filterSize;
 
     // Terms0 are weights for the individual samples, the other terms are offsets in texel space
     float4 vShadow3x3PCFTerms0 = float4(20.0 / 267.0, 33.0 / 267.0, 55.0 / 267.0, 0.0);
@@ -270,12 +268,11 @@ float SampleShadow_MSM_1tap(float3 tcs, float lightLeakBias, float momentBias, f
 //
 //                  PCSS sampling
 //
-float SampleShadow_PCSS(float3 tcs, float2 posSS, float2 scale, float2 offset, float shadowSoftness, float minFilterRadius, int blockerSampleCount, int filterSampleCount, float depthBias, Texture2D tex, SamplerComparisonState compSamp, SamplerState samp)
+float SampleShadow_PCSS(float3 tcs, float2 posSS, float2 scale, float2 offset, float shadowSoftness, float minFilterRadius, int blockerSampleCount, int filterSampleCount, Texture2D tex, SamplerComparisonState compSamp, SamplerState samp)
 {
-
 #if SHADOW_USE_DEPTH_BIAS == 1
     // add the depth bias
-    tcs.z += depthBias;
+    tcs.z += FIXED_UNIFORM_BIAS;
 #endif
 
     uint taaFrameIndex = _TaaFrameInfo.z;

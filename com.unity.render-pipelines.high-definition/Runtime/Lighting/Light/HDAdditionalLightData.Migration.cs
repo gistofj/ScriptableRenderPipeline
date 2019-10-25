@@ -78,7 +78,6 @@ namespace UnityEngine.Rendering.HighDefinition
                         t.shadowFadeDistance = additionalShadow.shadowFadeDistance;
                         t.shadowTint = additionalShadow.shadowTint;
                         t.normalBias = additionalShadow.normalBias;
-                        t.constantBias = additionalShadow.constantBias;
                         t.shadowUpdateMode = additionalShadow.shadowUpdateMode;
                         t.shadowCascadeRatios = additionalShadow.shadowCascadeRatios;
                         t.shadowCascadeBorders = additionalShadow.shadowCascadeBorders;

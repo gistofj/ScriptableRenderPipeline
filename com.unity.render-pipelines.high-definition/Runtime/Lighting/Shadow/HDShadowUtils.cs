@@ -300,5 +300,11 @@ namespace UnityEngine.Rendering.HighDefinition
 
             return guardAngle < guardAngleMaxInDeg ? guardAngle : guardAngleMaxInDeg;
         }
+
+        public static float GetSlopeBias(float normalizedSlopeBias)
+        {
+            const float baseBias = 5.0f;
+            return normalizedSlopeBias * baseBias;
+        }
     }
 }

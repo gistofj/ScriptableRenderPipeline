@@ -759,7 +759,8 @@ namespace UnityEditor.Rendering.HighDefinition
                 }
                 else
                 {
-                    EditorGUILayout.Slider(serialized.serializedLightData.constantBias, 0.0f, 1.0f, s_Styles.constantScale);
+                    EditorGUILayout.Slider(serialized.serializedLightData.slopeBias, 0.0f, 1.0f, s_Styles.slopeBias);
+
                     EditorGUILayout.Slider(serialized.serializedLightData.normalBias, 0.0f, 5.0f, s_Styles.normalBias);
 
                     if(serialized.editorLightShape == LightShape.Spot)
