@@ -21,6 +21,10 @@ The last step is important because, if you haven't installed the sample and load
 
 HDRP has deprecated the Linear Fog, Exponential Fog, Volumetric Fog, and Volumetric Fog Quality overrides in 2019.3 and replaced them with a single [Fog](Override-Fog.html) override. This override acts as an exponential fog with a height component by default and allows you to add additional volumetric fog. To automatically update old fog overrides to the new system, select **Edit > Render Pipeline > Upgrade Fog Volume Components**. Note that it can not safely convert all cases so you may need to upgrade some manually.
 
+## Shadow Maps
+
+Previously each light in HDRP exposed a constant shadow bias and a normal bias; in 2019.3 the constant bias has been replaced with a slope-scale depth bias. This parameter will still be in the range between 0 and 1, but it will lead to different results than the previous constant bias, hence it is recommended to readjust the biases in your lights if the default values are leading to unexpected results. 
+
 ## Area Lights
 
 Before Unity 2019.3, HDRP synchronized the width and height of an area [Light](Light-Component.html)'s **Emissive Mesh** with the [localScale](https://docs.unity3d.com/ScriptReference/Transform-localScale.html) of its Transform. From Unity 2019.3, HDRP uses the [lossyScale](https://docs.unity3d.com/ScriptReference/Transform-lossyScale.html) to make the **Emissive Mesh** account for the scale of the parent Transforms. This means that you must resize every area Light in your Unity Project according to the scale of its parent.
