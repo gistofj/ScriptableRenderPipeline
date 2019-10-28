@@ -392,6 +392,9 @@ namespace UnityEditor.Rendering.Universal
         };
         #endregion
 
+        public UniversalSurfaceSubShader()
+        { }
+
         public int GetPreviewPassIndex() { return 0; }
 
         ActiveFields GetActiveFieldsFromMasterNode(StylizedMasterNode masterNode, ShaderPass pass)
@@ -415,8 +418,6 @@ namespace UnityEditor.Rendering.Universal
             {
                 baseActiveFields.Add("AlphaClip");
             }
-
-            // baseActiveFields.Add("Normal");
 
             baseActiveFields.Add("SpecularSetup");
 
@@ -502,8 +503,5 @@ namespace UnityEditor.Rendering.Universal
         {
             return renderPipelineAsset is UniversalRenderPipelineAsset;
         }
-
-        public UniversalLitSubShader()
-        { }
     }
 }

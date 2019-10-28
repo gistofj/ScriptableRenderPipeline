@@ -21,5 +21,11 @@ namespace UnityEditor.ShaderGraph
         {
             GraphUtil.CreateNewGraph(new VfxMasterNode());
         }
+
+        [MenuItem("Assets/Create/Shader/Surface Shader Graph", false, 208)]
+        public static void CreateStylizedMasterMaterialGraph()
+        {
+            GraphUtil.CreateNewGraph(new SurfaceMasterNode());
+        }
     }
 }

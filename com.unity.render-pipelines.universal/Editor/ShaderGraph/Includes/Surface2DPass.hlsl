@@ -16,9 +16,6 @@ half4 frag(PackedVaryings packedInput) : SV_TARGET
     SurfaceDescriptionInputs surfaceDescriptionInputs = BuildSurfaceDescriptionInputs(unpacked);
     SurfaceDescription surfaceDescription = SurfaceDescriptionFunction(surfaceDescriptionInputs);
 
-    Light mainLight = GetMainLight(inputData.shadowCoord);
-    MixRealtimeAndBakedGI(mainLight, inputData.normalWS, inputData.bakedGI, half4(0, 0, 0, 0));
-
     #if _AlphaClip
         clip(surfaceDescription.Alpha - surfaceDescription.AlphaClipThreshold);
     #endif
